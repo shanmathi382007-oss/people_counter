@@ -1,0 +1,43 @@
+# ==============================================================================
+# People Counter Configuration File
+# ==============================================================================
+
+# Input video source:
+# - Webcam index: 0, 1, 2, ...
+# - Video file: "video.mp4/video.mp4.mp4" or "data/sample.mp4"
+# - RTSP stream URL: "rtsp://username:password@ip:port/stream"
+source: "video.mp4/video.mp4.mp4"
+
+# Detection & Tracking Model
+model: "people_counter/yolov8n.onnx"  # Bundled YOLOv8 model; no weights download required
+confidence: 0.35                 # Confidence threshold for person detection
+iou: 0.50                        # NMS IoU threshold
+tracker: "bytetrack.yaml"        # ByteTrack tracker configuration
+device: "cpu"                    # "cpu", "cuda", or null for auto-detect
+
+# Virtual Counting Line Settings
+line:
+  point1: [100, 360]             # [x1, y1] Start point of virtual line
+  point2: [540, 360]             # [x2, y2] End point of virtual line
+  buffer_distance: 20.0          # Buffer zone thickness (pixels) to absorb tracking jitter
+  in_direction: "A_to_B"         # "A_to_B" or "B_to_A" (A is side of positive normal)
+  check_segment_bounds: false    # If true, only counts within line segment endpoints
+
+# Performance and Preprocessing
+performance:
+  frame_skip: 1                  # Process every N-th frame (1 = every frame, 2 = 2x speed)
+  resize_width: 640              # Frame width resize (null to preserve original)
+  resize_height: 480             # Frame height resize (null to preserve original)
+  display_fps: true
+
+# Logging and Database Storage
+logging:
+  db_path: "people_counter.db"
+  csv_path: "outputs/crossings_log.csv"
+  export_csv_on_exit: true
+
+# Video Recording / Saving
+video_output:
+  save_video: false              # Set to true to record annotated output video
+  output_path: "outputs/annotated_output.mp4"
+  fps: 30

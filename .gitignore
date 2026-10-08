@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+people_counter.db
+**/people_counter.db
+outputs/
+**/outputs/
