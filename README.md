@@ -142,17 +142,17 @@ external database setup is needed.
 
 ## GitHub usage
 
-This workspace is not currently a Git repository. To upload it to the
-provided empty GitHub repository, run these commands from the project root:
+This project is hosted at
+[github.com/shanmathi382007-oss/people_counter](https://github.com/shanmathi382007-oss/people_counter).
+Clone it with:
 
 ```powershell
-git init
-git add .
-git commit -m "Initial people counter project"
-git branch -M main
-git remote add origin https://github.com/shanmathi382007-oss/people_counter.git
-git push -u origin main
+git clone https://github.com/shanmathi382007-oss/people_counter.git
+cd people_counter
 ```
+
+After making changes in the clone, commit and push them with `git add .`,
+`git commit -m "Describe your changes"`, and `git push`.
 
 The root `.gitignore` excludes virtual environments, Python/test caches, and
 generated database/output files. The included model and video assets are
